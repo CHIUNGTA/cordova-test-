@@ -1,22 +1,20 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+    <img alt="Vue logo" src="../assets/animeGirl.jpeg" width="300">
   </div>
   <van-button type="success" @click="clickEvent">主要按鈕</van-button>
   <p>{{$store.state.count}}</p>
-  <!-- <p>兩倍的幸福：{{$store.getters.get2Count}}</p> -->
-  <!-- <p>使用者名稱：{{$store.state.userName || '無'}}</p> -->
   <p>地理資料：{{ locationList.length }}</p>
   <van-button type="info" @click="clickEvent2">主要按鈕</van-button>
   <van-button type="info" @click="seeSimpleData">查看暫存資料</van-button>
   <van-button type="success" @click="openGPS">開始收集GPS</van-button>
   <van-button type="danger" @click="closeGPS">關閉收集GPS</van-button>
-  
+
   <van-button type="info" @click="open">開啟後台運行</van-button>
   <van-button type="info" @click="disable">關閉後台運行</van-button>
   <van-button type="danger" @click="getKey">取得key</van-button>
   <van-button type="success" @click="setKey">設定key</van-button>
-  
+
   <br>
   <van-button type="success" @click="openFlashlight">開啟手電筒</van-button>
   <van-button type="danger" @click="closeFlashlight">關閉手電筒</van-button>
@@ -187,7 +185,7 @@
       },
 
       /**
-       * 
+       *
        */
       getKey() {
         var kc = new Keychain()
@@ -240,7 +238,7 @@
           this.openAndClose()
         }, 6000)
       },
-      
+
       closeGPS() {
          clearInterval(this.timer)
          this.$dialog.alert({

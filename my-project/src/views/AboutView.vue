@@ -1,7 +1,5 @@
 <template>
   <div style="height:100vh;">
-    <!-- <iframe frameborder="0" scrolling="yes" marginheight="0" marginwidth="0" width="100%" height="100%"
-      src="https://chiungta.github.io/" />  -->
     <van-row>
       <van-col span="24">
         <van-image round width="10rem" height="10rem" fit="cover" position="left"
@@ -22,27 +20,19 @@
         <button @click="readLoaction">查看暫存經緯度</button>
       </van-col>
     </van-row>
-<!-- 
-     <form action="?" method="POST">
-      <div class="g-recaptcha" data-sitekey="6Le-KgUgAAAAABdFhvqj6KaSvRsvSL_lmH0ERIb3"></div>
-      <br/>
-      <input type="submit" value="Submit">
-    </form> -->
-
-    <div id="RecaptchaField1" >
-      <p @click="onloadCallback">hihi</p>
-    </div>
- <form action="?" method="POST">
+<!--
+    <van-row justify="center">
+      <van-col>
       <div id="html_element"></div>
-      <br>
-      <input type="submit" value="Submit">
-    </form>
+      </van-col>
+    </van-row> -->
+
 
   </div>
 </template>
 <script>
-import logService from '../services/log-service'
-import simpleStorage from '../utils/simple-storage'
+  import logService from '../services/log-service'
+  import simpleStorage from '../utils/simple-storage'
   export default {
     name: 'AboutView',
     components: {},
@@ -53,17 +43,23 @@ import simpleStorage from '../utils/simple-storage'
     },
     methods: {
       goToBlog() {
-       if (!!window.cordova) {
+        if (!!window.cordova) {
           cordova.InAppBrowser.open(this.blogUrl, '_system', 'location=yes')
         } else {
           window.open(this.blogUrl)
         }
       },
       consoleWrite() {
-        simpleStorage.set('locationList',[{time:new Date(), x:121,y:23}])
-        try{
-          logService.remoteLog('我有一隻小毛驢',{'errorMessage': new Date()})
-        }catch(err){
+        simpleStorage.set('locationList', [{
+          time: new Date(),
+          x: 121,
+          y: 23
+        }])
+        try {
+          logService.remoteLog('我有一隻小毛驢', {
+            'errorMessage': new Date()
+          })
+        } catch (err) {
           alert(err)
         }
       },
@@ -74,19 +70,23 @@ import simpleStorage from '../utils/simple-storage'
       readLoaction() {
         this.$dialog.alert({
           title: `共有${simpleStorage.get('locationList').length}筆`,
-           message: JSON.stringify(simpleStorage.get('locationList')),
-           confirmButtonColor: '#65db03',
-         });
-      },
-      onloadCallback() {
-        console.log('hihi')
-        grecaptcha.render('html_element', {
-          'sitekey' : '6Le-KgUgAAAAAMM1Q6hn7CHIYA6oQW1CfF6oTopL'
+          message: JSON.stringify(simpleStorage.get('locationList')),
+          confirmButtonColor: '#65db03',
         });
-      }
+      },
+
+      // /**
+      //  * reCAPTCHA 驗證使用
+      //  */
+      // onloadCallback() {
+      //   grecaptcha.render('html_element', {
+      //     'sitekey': '6Le-KgUgAAAAAMM1Q6hn7CHIYA6oQW1CfF6oTopL'
+      //     // 'sitekey': '6Le-KgUgAAAAABdFhvqj6KaSvRsvSL_lmH0ERIb3'
+      //   });
+      // }
     },
     mounted() {
-
+      // this.onloadCallback()
     },
   };
 

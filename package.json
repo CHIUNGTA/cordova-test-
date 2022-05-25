@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cordova-android": "cd my-project/ &&  npm run build && cd .. && cordova run android --device"
+    "cordova-android": "cd my-project/ &&  npm run build && cd .. &&  cordova run android --device"
   },
   "keywords": [
     "ecosystem:cordova"
@@ -31,7 +31,9 @@
     "plugins": {
       "cordova-plugin-whitelist": {},
       "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-geolocation": {},
+      "cordova-plugin-geolocation": {
+        "GPS_REQUIRED": "true"
+      },
       "cordova-plugin-background-mode": {},
       "cordova-background-geolocation-plugin": {
         "GOOGLE_PLAY_SERVICES_VERSION": "11+",
